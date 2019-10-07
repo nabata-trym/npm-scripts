@@ -1,0 +1,33 @@
+{
+  "name": "2019lookbook_winter_src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ejs": "ejs-cli --base-dir ejs 'index.ejs' --out ../2019lookbook_winter --options ./data/data.json & npm run rename",
+    "ejs:watch": "onchange './ejs' -- npm run ejs",
+    "babel": "babel js --out-dir ../2019lookbook_winter_mt/js",
+    "js:watch": "onchange './js' -- npm run babel",
+    "postcss": "postcss -c postcss.config.js -o ../2019lookbook_winter_mt/css/content.css ../2019lookbook_winter_mt/css/content.css",
+    "sass": "node-sass --include-path scss sass/content.scss --source-map true ../2019lookbook_winter_mt/css/content.css --output-style compressed -w",
+    "rename": "node -e \"require('fs').rename('../2019lookbook_winter/index.html', '../2019lookbook_winter/index.php', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\"",
+    "rename:watch": "onchange './ejs' -- npm run rename",
+    "dev": "npm run ejs:watch & npm run js:watch & npm run sass"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "autoprefixer": "^9.6.0",
+    "ejs-cli": "^2.0.1",
+    "node-sass": "^4.12.0",
+    "onchange": "^6.0.0",
+    "postcss-cli": "^6.1.2"
+  },
+  "dependencies": {
+    "swiper": "^4.5.0"
+  }
+}
